@@ -58,15 +58,25 @@ stack_push_str(Stack *stack, char *element){
   return NULL;
 }
 
-int *
-stack_push_int(Stack *stack, int *element){
+short int
+stack_push_short_int(Stack *stack, int element){
   assert(stack != NULL);
-  assert(element != NULL);
-  void *ret = stack_push(stack, element, sizeof(int));
-  if(ret){
-    return (int *)ret;
-  }
-  return NULL;
+  void *ret = stack_push(stack, &element, sizeof(short int));
+  return *(short int *)ret;
+}
+
+int
+stack_push_int(Stack *stack, int element){
+  assert(stack != NULL);
+  void *ret = stack_push(stack, &element, sizeof(int));
+  return *(int *)ret;
+}
+
+long long
+stack_push_long_long(Stack *stack, long long element){
+  assert(stack != NULL);
+  void *ret = stack_push(stack, &element, sizeof(long long));
+  return *(long long *)ret;
 }
 
 int stack_size(Stack *stack){
@@ -98,14 +108,25 @@ stack_pop_str(Stack *stack){
   return NULL;
 }
 
-int *
+short int
+stack_pop_short_int(Stack *stack){
+  assert(stack != NULL);
+  void *ret = stack_pop(stack);
+  return *(short int *)ret;
+}
+
+int
 stack_pop_int(Stack *stack){
   assert(stack != NULL);
   void *ret = stack_pop(stack);
-  if(ret){
-    return (int *)ret;
-  }
-  return NULL;
+  return *(int *)ret;
+}
+
+long long
+stack_pop_long_long(Stack *stack){
+  assert(stack != NULL);
+  void *ret = stack_pop(stack);
+  return *(long long *)ret;
 }
 
 void *stack_peek (Stack *stack){

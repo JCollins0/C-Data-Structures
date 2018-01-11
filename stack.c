@@ -4,12 +4,12 @@
 int main(int argc, char const *argv[]) {
   Stack stack;
   stack_init(&stack);
-  char *a = "test";
-  stack_push_str(&stack, a);
-  stack_push_str(&stack, a);
-  stack_push_str(&stack, a);
+  long long a = 20000004;
+  stack_push_long_long(&stack, a++);
+  stack_push_long_long(&stack, a++);
+  stack_push_long_long(&stack, a);
   while(stack_size(&stack) > 0){
-    printf("item: %s\n",stack_pop_str(&stack));
+    printf("item: %lld\n",stack_pop_long_long(&stack));
   }
   stack_destroy(&stack);
   return 0;
